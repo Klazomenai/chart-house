@@ -1,6 +1,6 @@
 # Chart House — Offshore Fleet Voyage Planner
 
-base_url = "https://klazomenai.dev"
+base_url = "https://klazomenai.github.io/chart-house"
 title = "Chart House"
 description = "Voyage planner for the Offshore Fleet — AI crew at sea"
 compile_sass = true

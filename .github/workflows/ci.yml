@@ -19,9 +19,9 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@v8
 
       - name: actionlint
-        # Nix-installed actionlint keeps the version pinned via the
-        # devShell's nixpkgs revision (rather than @latest from a curl).
-        run: nix-shell -p actionlint --run "actionlint -color"
+        # Sourced from the flake's pinned nixpkgs (see flake.lock).
+        # Drift only on intentional `nix flake update`.
+        run: nix develop --command actionlint -color
 
   build:
     runs-on: ubuntu-latest
@@ -33,15 +33,21 @@ jobs:
 
       - uses: DeterminateSystems/magic-nix-cache-action@v8
 
+      - name: Link check (internal links + anchors)
+        # Zola's built-in checker. --skip-external-links keeps CI fast
+        # and immune to upstream rate-limits / outages. External links
+        # can be checked separately via a manual or scheduled run.
+        run: nix develop --command zola check --skip-external-links
+
       - name: Build Zola site
         run: nix build .#default --print-build-logs
 
       - name: Verify build output
         run: |
           test -d result/ || { echo "::error::nix build produced no result/ symlink"; exit 1; }
-          echo "Built site contents (top-level):"
-          ls -la result/
           if [ ! -f result/index.html ]; then
             echo "::error::result/index.html missing — site build is broken"
             exit 1
           fi
+          echo "Built site contents (top-level):"
+          ls -la result/
