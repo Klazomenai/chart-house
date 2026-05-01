@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: DeterminateSystems/nix-installer-action@v14
+
+      - uses: DeterminateSystems/magic-nix-cache-action@v8
+
+      - name: actionlint
+        # Nix-installed actionlint keeps the version pinned via the
+        # devShell's nixpkgs revision (rather than @latest from a curl).
+        run: nix-shell -p actionlint --run "actionlint -color"
+
+  build:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: DeterminateSystems/nix-installer-action@v14
+
+      - uses: DeterminateSystems/magic-nix-cache-action@v8
+
+      - name: Build Zola site
+        run: nix build .#default --print-build-logs
+
+      - name: Verify build output
+        run: |
+          test -d result/ || { echo "::error::nix build produced no result/ symlink"; exit 1; }
+          echo "Built site contents (top-level):"
+          ls -la result/
+          if [ ! -f result/index.html ]; then
+            echo "::error::result/index.html missing — site build is broken"
+            exit 1
+          fi
