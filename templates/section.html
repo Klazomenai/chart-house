@@ -5,7 +5,7 @@
 {% block content %}
 {% if section.extra.banner %}
 <div class="section-banner{% if section.extra.overlap_banner %} section-banner--overlap{% endif %}" role="presentation">
-  <div class="section-banner-bg" style="background-image: url('{{ section.extra.banner }}');" data-parallax="0.35" data-parallax-max="180"></div>
+  <div class="section-banner-bg" style="background-image: url('{{ get_url(path=section.extra.banner) }}');" data-parallax="0.35" data-parallax-max="180"></div>
 </div>
 {% endif %}
 <section class="page-section{% if section.extra.overlap_banner %} page-section--overlap{% endif %}">

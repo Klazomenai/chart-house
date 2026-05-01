@@ -3,7 +3,7 @@ title = "About"
 template = "section.html"
 
 [extra]
-banner = "/images/banner/about.png"
+banner = "images/banner/about.png"
 hide_title = true
 +++
 

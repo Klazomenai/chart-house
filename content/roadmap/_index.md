@@ -3,7 +3,7 @@ title = "The Voyage"
 template = "section.html"
 
 [extra]
-banner = "/images/banner/voyage.png"
+banner = "images/banner/voyage.png"
 +++
 
 The fleet sails in milestones. Each milestone is a leg of the voyage &mdash;
