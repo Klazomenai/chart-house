@@ -167,7 +167,7 @@ table {
   position: absolute;
   inset: 0 0 -360px 0;
   z-index: 0;
-  background: url('/images/hero/sunset-bridge.png') center top / cover no-repeat;
+  background: url('images/hero/sunset-bridge.png') center top / cover no-repeat;
   will-change: transform;
   transform: translateZ(0); // promote to its own layer for smooth compositing
 }
@@ -629,7 +629,7 @@ table {
 .footer-strip-bg {
   position: absolute;
   inset: 0 0 -120px 0;
-  background-image: url('/images/texture/horizon-strip.png');
+  background-image: url('images/texture/horizon-strip.png');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;

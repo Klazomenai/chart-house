@@ -1,0 +1,6 @@
+{# Crew portrait — base_url-aware <img>. Use from markdown:
+     {{ crew_portrait(src="images/crew/maren.png", alt="Maren, the Shipwright") }}
+   `src` should be relative to the static/ directory (no leading slash).
+   `get_url()` resolves through Zola's base_url so the rendered tag
+   stays correct under root and subpath deploys alike. #}
+<img class="crew-portrait" src="{{ get_url(path=src) }}" alt="{{ alt }}" loading="lazy">

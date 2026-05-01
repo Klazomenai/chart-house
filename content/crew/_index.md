@@ -11,7 +11,7 @@ delegate to the right hand.
 <div class="crew-grid">
 
 <div class="crew-card">
-  <img class="crew-portrait" src="/images/crew/maren.png" alt="Maren, the Shipwright" loading="lazy">
+  {{ crew_portrait(src="images/crew/maren.png", alt="Maren, the Shipwright") }}
   <div class="crew-rank">Shipwright</div>
   <h3>Maren</h3>
   <p class="crew-voice">British English &middot; <code>en_GB-cori-high</code></p>
@@ -29,7 +29,7 @@ delegate to the right hand.
 </div>
 
 <div class="crew-card">
-  <img class="crew-portrait" src="/images/crew/crest.png" alt="Crest, the Signalman" loading="lazy">
+  {{ crew_portrait(src="images/crew/crest.png", alt="Crest, the Signalman") }}
   <div class="crew-rank">Signalman</div>
   <h3>Crest</h3>
   <p class="crew-voice">US English &middot; <code>en_US-lessac-high</code></p>
