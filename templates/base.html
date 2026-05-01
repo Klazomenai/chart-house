@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ config.title }}{% endblock %} — {{ config.title }}</title>
+  <meta name="description" content="{{ config.description }}">
+  <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
+  <script src="{{ get_url(path='js/parallax.js') }}" defer></script>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="{{ get_url(path='/') }}" class="nav-brand">
+        <span class="nav-icon">&#9875;</span>
+        <span>Chart House</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="{{ get_url(path='/') }}">Home</a></li>
+        <li><a href="{{ get_url(path='crew/') }}">Crew</a></li>
+        <li><a href="{{ get_url(path='roadmap/') }}">Roadmap</a></li>
+        <li><a href="{{ get_url(path='about/') }}">About</a></li>
+        <li><a href="https://github.com/Klazomenai" class="nav-gh">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <div class="footer-strip" role="presentation">
+    <div class="footer-strip-bg" data-parallax="0.25" data-parallax-max="100"></div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-phase">{{ config.extra.phase }} &middot; {{ config.extra.version }}</p>
+      <p class="footer-motto">{{ config.extra.tagline }}</p>
+      <p class="footer-license">Bridge &amp; DeckChat &mdash; AGPL-3.0-or-later</p>
+      <p class="footer-copy">&copy; 2026 Klazomenai</p>
+    </div>
+  </footer>
+</body>
+</html>

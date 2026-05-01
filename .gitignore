@@ -1,0 +1,6 @@
+public/
+.devenv/
+.devenv.flake.nix
+devenv.lock
+.direnv/
+data/

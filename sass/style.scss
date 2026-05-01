@@ -1,0 +1,676 @@
+// Chart House — Nautical Theme
+// Colours: dark ocean, sunset gold, ember orange, twilight
+
+$navy: #0c0a14;
+$navy-light: #161222;
+$navy-mid: #1e1830;
+$gold: #e8a830;
+$gold-light: #f4c45c;
+$foam: #e07028;
+$foam-light: #f09048;
+$parchment: #1a1424;
+$parchment-dark: #241c32;
+$ink: #e8dcd0;
+$rope: #a08060;
+$signal-red: #e04840;
+$signal-green: #40b868;
+$mist: #887898;
+
+// Type
+$font-body: 'Georgia', 'Times New Roman', serif;
+$font-head: 'Trebuchet MS', 'Lucida Sans', sans-serif;
+$font-mono: 'Courier New', monospace;
+
+// Reset
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 18px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-body;
+  color: $ink;
+  background: $parchment;
+  line-height: 1.7;
+}
+
+a {
+  color: $foam;
+  text-decoration: none;
+  &:hover { color: $foam-light; text-decoration: underline; }
+}
+
+h1, h2, h3, h4 {
+  font-family: $font-head;
+  color: $gold;
+  line-height: 1.3;
+}
+
+code {
+  font-family: $font-mono;
+  font-size: 0.85em;
+  background: $parchment-dark;
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+}
+
+blockquote {
+  border-left: 3px solid $gold;
+  padding: 0.5em 1em;
+  margin: 0.8em 0;
+  font-style: italic;
+  color: $mist;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid $parchment-dark;
+  margin: 2.5rem 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  th, td {
+    padding: 0.5rem 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid $parchment-dark;
+  }
+  th {
+    font-family: $font-head;
+    color: $gold;
+    font-weight: 600;
+  }
+}
+
+// Navigation
+.nav {
+  background: $navy;
+  border-bottom: 3px solid $gold;
+  padding: 0 1.5rem;
+}
+
+.nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3.5rem;
+}
+
+.nav-brand {
+  font-family: $font-head;
+  font-size: 1.1rem;
+  color: $gold;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  &:hover { color: $gold-light; text-decoration: none; }
+}
+
+.nav-icon { font-size: 1.3rem; }
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  li a {
+    color: $ink;
+    font-family: $font-head;
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    &:hover { color: $gold; text-decoration: none; }
+  }
+}
+
+.nav-gh {
+  border: 1px solid $mist;
+  padding: 0.25rem 0.7rem;
+  border-radius: 3px;
+  &:hover { border-color: $gold; }
+}
+
+// Hero — three layers stacked:
+//   ::before  → image, parallaxes (slower scroll for depth)
+//   ::after   → dark gradient overlay, static (text legibility)
+//   .hero-inner / .hero-wave → foreground content, static
+.hero {
+  background-color: $navy;
+  color: $ink;
+  text-align: center;
+  padding: 6rem 1.5rem 5rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(12, 10, 20, 0.55) 0%, rgba(12, 10, 20, 0.25) 45%, rgba(12, 10, 20, 0.55) 100%);
+    pointer-events: none;
+  }
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0 0 -360px 0;
+  z-index: 0;
+  background: url('/images/hero/sunset-bridge.png') center top / cover no-repeat;
+  will-change: transform;
+  transform: translateZ(0); // promote to its own layer for smooth compositing
+}
+
+.hero-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-phase {
+  font-family: $font-head;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: $gold;
+  margin-bottom: 0.5rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+  color: $ink;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: $gold-light;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 40px;
+  background: $parchment;
+  clip-path: polygon(
+    0% 60%, 5% 50%, 10% 55%, 15% 45%, 20% 50%,
+    25% 40%, 30% 50%, 35% 42%, 40% 52%, 45% 44%,
+    50% 55%, 55% 45%, 60% 50%, 65% 42%, 70% 52%,
+    75% 44%, 80% 50%, 85% 42%, 90% 52%, 95% 48%, 100% 55%,
+    100% 100%, 0% 100%
+  );
+}
+
+// Buttons
+.btn {
+  display: inline-block;
+  font-family: $font-head;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  &:hover { text-decoration: none; }
+}
+
+.btn-primary {
+  background: $gold;
+  color: $navy;
+  &:hover { background: $gold-light; color: $navy; }
+}
+
+.btn-secondary {
+  border: 1px solid $gold;
+  color: $gold;
+  &:hover { border-color: $gold; color: $gold; }
+}
+
+// Pitch section
+.pitch {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.pitch-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.pitch-lead {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+// Fleet grid
+.fleet {
+  background: $navy;
+  color: $ink;
+  padding: 3.5rem 1.5rem;
+}
+
+.fleet-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  h2 { color: $gold; text-align: center; margin-bottom: 2rem; }
+}
+
+.fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.5rem;
+}
+
+.ship-card {
+  background: $navy-light;
+  border: 1px solid $navy-mid;
+  border-radius: 6px;
+  padding: 1.5rem;
+  transition: border-color 0.2s;
+  &:hover { border-color: $gold; }
+
+  h3 {
+    color: $ink;
+    font-size: 1.3rem;
+    margin: 0.5rem 0 0.3rem;
+  }
+}
+
+.ship-card--mystery {
+  border-style: dashed;
+  border-color: $mist;
+  opacity: 0.85;
+  &:hover { border-color: $gold; opacity: 1; }
+}
+
+.ship-icon { font-size: 2rem; }
+.ship-role {
+  font-family: $font-head;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $gold;
+  margin-bottom: 0.8rem;
+}
+
+.ship-meta {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  font-family: $font-head;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid $foam;
+  border-radius: 3px;
+  color: $foam-light;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tag--muted {
+  border-color: $mist;
+  color: $mist;
+}
+
+.ship-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: $font-head;
+  font-size: 0.85rem;
+  color: $foam-light;
+  &:hover { color: $gold; }
+}
+
+// Architecture flow
+.architecture {
+  padding: 3.5rem 1.5rem;
+}
+
+.architecture-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  h2 { text-align: center; margin-bottom: 2rem; }
+}
+
+.arch-flow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.arch-step {
+  flex: 1;
+  min-width: 140px;
+  max-width: 180px;
+  text-align: center;
+  padding: 1rem;
+  h4 {
+    font-size: 1rem;
+    margin: 0.5rem 0 0.3rem;
+  }
+  p { font-size: 0.8rem; color: $mist; }
+}
+
+.arch-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: $navy;
+  color: $gold;
+  font-family: $font-head;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.arch-arrow {
+  color: $gold;
+  font-size: 1.5rem;
+  padding-top: 1.2rem;
+  @media (max-width: 600px) { display: none; }
+}
+
+// Privacy banner
+.privacy-banner {
+  background: $navy-mid;
+  color: $ink;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  h2 { color: $gold; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  p { color: $mist; font-size: 0.95rem; }
+}
+
+// Crew grid
+.crew-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.crew-card {
+  background: $navy-light;
+  border: 1px solid $parchment-dark;
+  border-radius: 6px;
+  padding: 1.5rem;
+  transition: border-color 0.2s;
+  overflow: hidden;
+  &:hover { border-color: $gold; }
+
+  h3 { margin-bottom: 0.2rem; }
+}
+
+.crew-portrait {
+  display: block;
+  width: calc(100% + 3rem);
+  height: 260px;
+  object-fit: cover;
+  object-position: center top;
+  margin: -1.5rem -1.5rem 1.2rem;
+  border-bottom: 1px solid $parchment-dark;
+}
+
+.crew-rank {
+  font-family: $font-head;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $gold;
+}
+
+.crew-voice {
+  font-size: 0.8rem;
+  color: $mist;
+  margin-bottom: 0.5rem;
+}
+
+.crew-tools {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tool {
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  background: $navy;
+  color: $foam-light;
+  border-radius: 3px;
+}
+
+// Roadmap milestones
+.milestone {
+  background: $navy-light;
+  border: 1px solid $parchment-dark;
+  border-left: 4px solid $foam;
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  h3 { margin-bottom: 0.3rem; }
+}
+
+.milestone--future {
+  opacity: 0.6;
+  border-left-color: $mist;
+}
+
+.milestone-status {
+  font-family: $font-head;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.status--active { color: $foam; }
+.status--planned { color: $gold; }
+.status--future { color: $mist; }
+
+.issue-list {
+  margin-top: 1rem;
+}
+
+.issue {
+  font-size: 0.85rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid $parchment-dark;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  &:last-child { border-bottom: none; }
+}
+
+.issue--closed { color: $mist; text-decoration: line-through; }
+.issue--open { color: $ink; }
+
+.issue-id {
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  color: $foam;
+  min-width: 3rem;
+}
+
+.issue--closed .issue-id { color: $mist; }
+
+.issue-tag {
+  font-family: $font-head;
+  font-size: 0.65rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  background: $navy;
+  color: $foam-light;
+  text-transform: uppercase;
+  margin-left: auto;
+}
+
+.issue--closed .issue-tag { background: $parchment-dark; color: $mist; }
+
+// Section header banner (optional, set via section.extra.banner)
+.section-banner {
+  width: 100%;
+  height: 420px;
+  border-bottom: 3px solid $gold;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, transparent 55%, rgba(26, 20, 36, 0.7) 100%);
+    pointer-events: none;
+  }
+}
+
+.section-banner-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+// When a banner is in overlap mode: taller (more image visible above the
+// text overlap zone), no hard bottom border, and a light bottom gradient
+// (text-shadow on the headings carries most of the legibility load).
+.section-banner--overlap {
+  height: 380px;
+  border-bottom: none;
+
+  &::after {
+    background: linear-gradient(180deg, transparent 60%, rgba(26, 20, 36, 0.6) 100%);
+  }
+}
+
+// Page section pulled up to overlap the banner above it. Used in tandem
+// with .section-banner--overlap.
+.page-section--overlap {
+  margin-top: -200px;
+  position: relative;
+  z-index: 2;
+
+  .page-inner h1 {
+    font-size: 4rem;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.85);
+    margin-bottom: 1.2rem;
+  }
+
+  .page-inner h2:first-of-type {
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+    margin-top: 0;
+  }
+}
+
+// Page content sections
+.page-section {
+  padding: 3rem 1.5rem;
+}
+
+.page-inner {
+  max-width: 740px;
+  margin: 0 auto;
+  h1 { margin-bottom: 1.5rem; }
+  h2 { margin-top: 2rem; margin-bottom: 0.8rem; }
+  h3 { margin-top: 1.5rem; margin-bottom: 0.5rem; }
+  p { margin-bottom: 1rem; }
+  ul, ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+  li { margin-bottom: 0.3rem; }
+}
+
+// Footer horizon strip (decorative — sits between page body and footer)
+.footer-strip {
+  width: 100%;
+  height: 130px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-strip-bg {
+  position: absolute;
+  inset: 0 0 -120px 0;
+  background-image: url('/images/texture/horizon-strip.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+// Footer
+.footer {
+  background: $navy;
+  color: $mist;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-top: 3px solid $gold;
+}
+
+.footer-inner { max-width: 700px; margin: 0 auto; }
+.footer-phase {
+  font-family: $font-head;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: $gold;
+  margin-bottom: 0.3rem;
+}
+.footer-motto { font-style: italic; font-size: 0.9rem; margin-bottom: 0.3rem; }
+.footer-license { font-size: 0.8rem; margin-bottom: 0.3rem; }
+.footer-copy { font-size: 0.75rem; color: darken($mist, 15%); }
+
+// Responsive
+@media (max-width: 600px) {
+  html { font-size: 16px; }
+  .hero-title { font-size: 2rem; }
+  .nav-inner { flex-wrap: wrap; height: auto; padding: 0.5rem 0; }
+  .nav-links { gap: 0.8rem; flex-wrap: wrap; }
+  .fleet-grid { grid-template-columns: 1fr; }
+  .crew-grid { grid-template-columns: 1fr; }
+  .arch-flow { flex-direction: column; align-items: center; }
+  .arch-step { max-width: 100%; }
+  .section-banner { height: 280px; }
+  .section-banner--overlap { height: 280px; }
+  .page-section--overlap { margin-top: -120px; }
+  .page-section--overlap .page-inner h1 { font-size: 2.6rem; }
+}

@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-bg" role="presentation" data-parallax="0.65" data-parallax-max="340"></div>
+  <div class="hero-inner">
+    <p class="hero-phase">{{ config.extra.phase }}</p>
+    <h1 class="hero-title">Chart House</h1>
+    <p class="hero-subtitle">{{ config.extra.tagline }}</p>
+    <div class="hero-cta">
+      <a href="{{ get_url(path='crew/') }}" class="btn btn-primary">Meet the Crew</a>
+      <a href="{{ get_url(path='roadmap/') }}" class="btn btn-secondary">View the Voyage</a>
+    </div>
+  </div>
+  <div class="hero-wave"></div>
+</section>
+
+<section class="pitch">
+  <div class="pitch-inner">
+    <h2>Take the watch to the rail</h2>
+    <p class="pitch-lead">
+      Or your set list. Your training plan. Your codebase. Whatever your
+      trade, ship's company &mdash; your crew sails with you now. The deck's
+      wherever you stand; the helm answers when you hail.
+    </p>
+    <p>
+      Hail the bridge from your headset. Your words go transcribed on-device,
+      carried below decks over encrypted channels, your AI crew answering in
+      their own voice. What's said aboard stays aboard.
+    </p>
+  </div>
+</section>
+
+<section class="fleet">
+  <div class="fleet-inner">
+    <h2>The Fleet</h2>
+    <div class="fleet-grid">
+
+      <div class="ship-card">
+        <div class="ship-icon">&#9741;</div>
+        <h3>Bridge</h3>
+        <p class="ship-role">AI Crew Orchestrator</p>
+        <p>
+          Server-side Matrix bot that routes your voice to AI crew members.
+          Go, mautrix-go, E2EE, Claude-powered personas with real tools &mdash;
+          kubectl, helm, email, GitHub, Prometheus, Loki.
+        </p>
+        <div class="ship-meta">
+          <span class="tag">Go</span>
+          <span class="tag">AGPL-3.0-or-later</span>
+          <span class="tag">v0.1.0-alpha.5</span>
+        </div>
+        <a href="https://github.com/Klazomenai/bridge" class="ship-link">View on GitHub &rarr;</a>
+      </div>
+
+      <div class="ship-card">
+        <div class="ship-icon">&#127908;</div>
+        <h3>DeckChat</h3>
+        <p class="ship-role">Android Voice Client</p>
+        <p>
+          Press the headset button, hail the bridge. Offline STT/TTS via
+          Sherpa-ONNX, end-to-end encrypted Matrix, no cloud speech processing.
+          What's said aboard stays aboard.
+        </p>
+        <div class="ship-meta">
+          <span class="tag">Kotlin</span>
+          <span class="tag">AGPL-3.0-or-later</span>
+          <span class="tag">v0.1.0-alpha.7</span>
+        </div>
+        <a href="https://github.com/Klazomenai/deck-chat" class="ship-link">View on GitHub &rarr;</a>
+      </div>
+
+      <div class="ship-card ship-card--mystery">
+        <div class="ship-icon">&#9875;</div>
+        <h3>AKeyRA</h3>
+        <p class="ship-role">The Vessel</p>
+        <p>
+          The ship herself &mdash; the infrastructure that binds the fleet.
+          Her charts are kept close for now, guarded by the crew.
+          With fair winds and following seas from Poseidon,
+          she'll show her hull to the world in due time.
+        </p>
+        <div class="ship-meta">
+          <span class="tag tag--muted">Private</span>
+          <span class="tag tag--muted">Coming Soon</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="architecture">
+  <div class="architecture-inner">
+    <h2>How It Works</h2>
+    <div class="arch-flow">
+      <div class="arch-step">
+        <div class="arch-num">1</div>
+        <h4>Hail</h4>
+        <p>Press the headset button or on-screen FAB. DeckChat captures 16kHz mono PCM audio.</p>
+      </div>
+      <div class="arch-arrow">&rarr;</div>
+      <div class="arch-step">
+        <div class="arch-num">2</div>
+        <h4>Transcribe</h4>
+        <p>Sherpa-ONNX Whisper runs on-device. Your voice never leaves the phone.</p>
+      </div>
+      <div class="arch-arrow">&rarr;</div>
+      <div class="arch-step">
+        <div class="arch-num">3</div>
+        <h4>Signal</h4>
+        <p>Text is sent over E2EE Matrix to the Bridge bot. End-to-end encrypted.</p>
+      </div>
+      <div class="arch-arrow">&rarr;</div>
+      <div class="arch-step">
+        <div class="arch-num">4</div>
+        <h4>Crew</h4>
+        <p>Bridge routes to the right crew member. They use real tools &mdash; kubectl, GitHub, email.</p>
+      </div>
+      <div class="arch-arrow">&rarr;</div>
+      <div class="arch-step">
+        <div class="arch-num">5</div>
+        <h4>Reply</h4>
+        <p>The crew's response is spoken back in their own voice via Piper TTS.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="privacy-banner">
+  <div class="privacy-inner">
+    <h2>What's said aboard stays aboard</h2>
+    <p>
+      No cloud speech processing. No telemetry. No analytics.
+      No Google Play Services. No exceptions.
+    </p>
+  </div>
+</section>
+{% endblock %}

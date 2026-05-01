@@ -1,0 +1,16 @@
+# Chart House — Offshore Fleet Voyage Planner
+
+base_url = "https://klazomenai.dev"
+title = "Chart House"
+description = "Voyage planner for the Offshore Fleet — AI crew at sea"
+compile_sass = true
+build_search_index = false
+generate_feeds = false
+minify_html = true
+
+[markdown]
+
+[extra]
+tagline = "Plot your course. Hail the crew. Code under open skies."
+phase = "Developer Preview"
+version = "Alpha"
